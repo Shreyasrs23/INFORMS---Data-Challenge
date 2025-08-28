@@ -15,12 +15,12 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
 # ---------------- config ----------------
-SPLIT_DIR = "data/"
-OUT_DIR   = "results/"
+SPLIT_DIR = "./../../Data Given for Challenge/data/"
+OUT_DIR   = "./../../results/"
 os.makedirs(OUT_DIR, exist_ok=True)
 
-SEQ_LEN    = 24
-BATCH_SIZE = 64
+SEQ_LEN    = 8
+BATCH_SIZE = 32
 EPOCHS     = 5
 LR         = 1e-3
 DEVICE     = "cuda" if torch.cuda.is_available() else "cpu"
@@ -60,7 +60,7 @@ def build_windows(X_loc, y_loc, seq_len, horizon):
     for i in range(N):
         Xw.append(X_loc[i:i+seq_len])
         Yw.append(y_loc[i+seq_len:i+seq_len+horizon])
-    return np.asarray(Xw, dtype=float), np.asarray(Yw, dtype=float)
+    return np.asarray(Xw, dtype=np.float32), np.asarray(Yw, dtype=np.float32)
 
 # ---------------- model ----------------
 class SimpleSeq2Seq(nn.Module):
@@ -187,8 +187,8 @@ def predict_per_county(ds_train, model, scalers, horizon, ts_future):
 def main():
     # Load train + test
     ds_train = open_ds(os.path.join(SPLIT_DIR, "train.nc"))
-    ds_test24 = open_ds(os.path.join(SPLIT_DIR, "test_24h.nc"))
-    ds_test48 = open_ds(os.path.join(SPLIT_DIR, "test_48h.nc"))
+    ds_test24 = open_ds(os.path.join(SPLIT_DIR, "test_24h_demo.nc"))
+    ds_test48 = open_ds(os.path.join(SPLIT_DIR, "test_48h_demo.nc"))
 
     # Ensure features exist (and implicitly use all of them)
     _ = get_all_features(ds_train)

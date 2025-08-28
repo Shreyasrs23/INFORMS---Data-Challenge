@@ -9,8 +9,8 @@ import pandas as pd
 import xarray as xr
 from math import sqrt
 
-SPLIT_DIR = "data/"
-PRED_DIR  = "results/"
+SPLIT_DIR = "./../../Data Given for Challenge/data/"
+PRED_DIR  = "./../../results/"
 
 PRED_24 = os.path.join(PRED_DIR, "sarimax_pred_24h.csv")  # change if your per-county filename differs
 PRED_48 = os.path.join(PRED_DIR, "sarimax_pred_48h.csv")  # change if your per-county filename differs

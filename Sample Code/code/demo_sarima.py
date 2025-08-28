@@ -8,8 +8,8 @@ import pandas as pd
 import xarray as xr
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-SPLIT_DIR = "data/"
-OUT_DIR = "results/"
+SPLIT_DIR = "./../../Data Given for Challenge/data/"
+OUT_DIR = "./../../results/"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 def safe_fit_sarimax(y: np.ndarray):
@@ -25,8 +25,8 @@ def safe_fit_sarimax(y: np.ndarray):
 
 def main():
     ds_train = xr.open_dataset(os.path.join(SPLIT_DIR, "train.nc"))
-    ds_test24 = xr.open_dataset(os.path.join(SPLIT_DIR, "test_24h.nc"))
-    ds_test48 = xr.open_dataset(os.path.join(SPLIT_DIR, "test_48h.nc"))
+    ds_test24 = xr.open_dataset(os.path.join(SPLIT_DIR, "test_24h_demo.nc"))
+    ds_test48 = xr.open_dataset(os.path.join(SPLIT_DIR, "test_48h_demo.nc"))
 
     counties = list(ds_train.location.values)
     ts24 = pd.to_datetime(ds_test24.timestamp.values)
