@@ -38,6 +38,8 @@ def main():
     for county in counties:
         y_train = ds_train.out.sel(location=county).values.astype(float).flatten()
 
+        print(county,y_train)
+
         res = safe_fit_sarimax(y_train)
 
         # Forecast horizons
