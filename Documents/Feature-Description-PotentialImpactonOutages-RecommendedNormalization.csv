@@ -1,0 +1,57 @@
+Feature,Description,Potential Impact on Outages,Recommended Normalization
+t2m,Near-surface air temperature at 2 meters height (°C),Extreme heat or cold can cause equipment failures or increase demand on the grid.,Z-Score (Standardization)
+d2m,Dew point temperature at 2 meters height (°C),High dew point may indicate moisture that can facilitate corrosion or equipment faults.,Z-Score
+sh2,Specific humidity at 2 meters height (kg/kg),Higher moisture can promote short circuits and equipment degradation.,Z-Score
+r2,Relative humidity at 2 meters height (%),High humidity can cause insulation breakdown or equipment malfunction.,Min-Max (0 to 1)
+t,Temperature (°C),Similar effect as t2m for heat/cold stress.,Z-Score
+"r, r_1",Relative humidity (various levels or lagged),"Same as r2, capturing temporal humidity effects.",Min-Max
+"pres, pres_1, pres_2",Atmospheric pressure at different levels (hPa or Pa),Sudden pressure changes can indicate storms or weather systems affecting reliability.,Z-Score
+sp,Surface pressure (hPa or Pa),Reflects local weather systems; low pressure may precede storms causing outages.,Z-Score
+pt,Potential temperature (K),"Indicator of atmospheric stability, relevant for storm development.",Z-Score
+"gh, gh_1...gh_7",Geopotential heights at various pressure levels (m),Related to storm dynamics and severe weather risks.,Z-Score
+"u, v",Horizontal and vertical wind components (m/s),High winds can directly damage power lines and infrastructure.,Z-Score
+"u10, v10",Wind components at 10 meters height (m/s),Critical for assessing near-surface wind hazards causing outages.,Z-Score
+gust,Wind gust speed (m/s),Sudden gusts cause immediate mechanical damage or faults.,Z-Score
+max_10si,Maximum 10-second sustained wind speed (m/s),Reflects extreme wind events with high outage risk.,Z-Score
+"vucsh, vvcsh, ustm, vstm",Various turbulence and wind shear measures,Indicate turbulent conditions that stress grid components.,Z-Score
+"wz, wz_1",Vertical velocity components (m/s),"Updrafts/downdrafts important for storm formation, linked to outages.",Z-Score
+"cape, cape_1",Convective available potential energy (J/kg),"High CAPE signals strong thunderstorm potential, increasing outage risk.",Log Transform + Z-Score
+cin,Convective inhibition (J/kg),Low CIN means easier storm development with outage potential.,Log Transform + Z-Score
+"lftx, lftx4",Lifted indices (K),Measure atmospheric instability; higher instability signals storm formation.,Z-Score
+"hail, hail_1, hail_2",Hail probability or hail-size-related metrics,Hail can physically damage equipment and cause outages.,Robust Scaler
+ltng,Lightning activity index,Lightning strikes cause direct outages or trigger protective shutdowns.,Robust Scaler
+"tcc, tcc_1",Total cloud cover (%),Impacts local solar radiation affecting thermal load on infrastructure.,Min-Max
+"hcc, mcc, lcc","High, Medium, Low cloud cover (%)",Cloud distribution affects local weather stresses.,Min-Max
+sdswrf,Surface downward shortwave radiation (W/m²),"Solar radiation can heat equipment, affecting failure rates.",Log Transform + Z-Score
+sdlwrf,Surface downward longwave radiation (W/m²),Affects local temperature and thermal cycling of equipment.,Log Transform + Z-Score
+suswrf,Surface upward shortwave radiation (W/m²),Reflects ground surface radiation; indirect effect on power infrastructure.,Log Transform + Z-Score
+sulwrf,Surface upward longwave radiation (W/m²),Influences radiational cooling effects on equipment.,Log Transform + Z-Score
+prate,Precipitation rate (mm/hr),"Heavy rain causes flooding and equipment exposure, increasing outage risk.",Log Transform + Z-Score
+tp,Total precipitation (mm),Cumulative rain can cause water ingress and faults.,Log Transform + Z-Score
+crain,Convective rain (mm),Intense localized storms lead to outages.,Log Transform + Z-Score
+cfrzr,Freezing rain (mm),Ice accumulation causes line and equipment damage.,Log Transform + Z-Score
+cicep,Ice pellets (mm),Similar damage risk as freezing rain.,Log Transform + Z-Score
+csnow,Snow (mm),Heavy snow loads can cause line breakages and outages.,Log Transform + Z-Score
+cpofp,Probability of frozen precipitation (%),High probability indicates risk of ice and snow damage.,Min-Max
+bgrun,Baseflow runoff (mm),Influences ground moisture which can affect underground infrastructure.,Z-Score
+ssrun,Surface runoff (mm),Excess surface water can lead to flooding-related outages.,Z-Score
+mslma,Mean sea-level pressure anomaly (hPa),Indicates broader weather anomaly risks.,Z-Score
+pwat,Precipitable water (mm),"High precipitable water signals heavy precipitation, increasing outage likelihood.",Z-Score
+refc,Composite radar reflectivity (dBZ),"Indicates storm intensity, useful for outage risk forecasts.",Z-Score
+"refd, refd_1",Radar reflectivity at specific levels (dBZ),"Same as refc at different heights, tracking storm severity.",Z-Score
+aod,Aerosol optical depth,"Affects solar radiation and climate factors, indirect outage factors.",Min-Max
+veg,Vegetation fraction (%),Vegetation density influences local weather and risk of line contact outages.,Min-Max
+lai,Leaf area index,"Similar to veg, indicates canopy density.",Min-Max
+vgtyp,Vegetation type (categorical encoded as integers),Risk of outages from falling branches or foliage type.,One-Hot Encoding (Categorical)
+orog,Orography (elevation above sea level in meters),Elevation affects weather severity and types of outages.,Z-Score
+vis,Visibility (km),"Poor visibility conditions may correlate with fog, storms—risk factors for outages.",Z-Score
+blh,Boundary layer height (m),"Affects atmospheric mixing, impacting local storm development.",Z-Score
+fsr,Forecast surface roughness,Influences wind flow and turbulence affecting outage risk.,Z-Score
+gflux,Ground heat flux (W/m²),"Affects ground temperature, relevant for underground infrastructure.",Z-Score
+veril,Various technical and diagnostic meteorological fields,Specialized measures useful for detailed outage models.,Z-Score
+tcolw,Total column water,"Indicates total atmospheric moisture, linked to storm potential.",Z-Score
+tcoli,Total column ice,Ice presence at atmospheric column levels influencing freezing hazards.,Z-Score
+plpl,Pressure lapse rate,Vertical pressure gradient affecting storm intensity.,Z-Score
+mstav,Meteorological standard average value,General average meteorological condition indicator.,Z-Score
+"sdwe, sdwe_1",Surface dew point related variables,Moisture related variables influencing icing and corrosion risks.,Z-Score
+layth,Layer thickness,"Thickness of atmospheric layers, relating to storm structure and stability.",Z-Score
