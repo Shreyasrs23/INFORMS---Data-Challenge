@@ -24,7 +24,7 @@ The project is organized into logical folders mirroring a standard data science 
 | :--- | :--- | :--- |
 | **`Data Given for Challenge/`** | Stores the **raw, original input data** provided for the challenge. | Original data files (e.g., `.csv`, `.xlsx`). |
 | **`Data Exploration/`** | Notebooks dedicated to **Exploratory Data Analysis (EDA)** and initial data assessment. | Jupyter notebooks (`.ipynb`) with visualizations and summaries. |
-| **`Data Prep and Model Training/`** | Contains scripts and notebooks for **data cleaning, feature engineering, and model development.** | Python scripts (`.py`), training notebooks, preprocessing functions. |
+| **`Data Prep and Model Training/`** | Contains scripts and notebooks for **model development.** | Python scripts (`.py`), training notebooks, preprocessing functions. |
 | **`Documents/`** | Stores final reports, presentations, and any written summaries submitted for the challenge. | Final report (`.pdf`), presentation slides (`.pptx`). |
 | **`results/`** | Holds the final outputs, including model predictions, performance metrics, and key visualization plots. | Prediction files, metric reports, model output plots. |
 | **`Sample Code/code/`** | Auxiliary or utility scripts and functions used throughout the project. | Helper functions, reusable code snippets. |
@@ -40,9 +40,8 @@ The `Data Exploration/` folder is crucial for understanding the raw data and inf
 * **Focus:** Checking data types, identifying the dimensions (rows and columns), and assessing data quality.
 * **Deliverables:** Notebooks showing a high-level `df.info()` and `df.describe()` to summarize numerical features.
 
-### **2. Missing Values and Outliers**
-* **Objective:** Identify the extent of missing data (`NaNs`) and the presence of extreme outliers.
-* **Focus:** Visualizing missing patterns (e.g., using a heatmap or percentage bar plot) and using box plots/histograms to spot outliers in key variables.
+### **2. Visualization and Normalization**
+* **Objective:** Visualizing missing patterns (e.g., using a heatmap or percentage bar plot) and using box plots/histograms to spot outliers in key variables.
 
 ### **3. Univariate & Bivariate Analysis**
 * **Objective:** Understand the distribution of individual features and their relationship with the target variable.
@@ -83,7 +82,7 @@ Given the complexity of INFORMS data challenges, **Ensemble Tree-based Models** 
 * **Validation:** **Cross-validation** (e.g., K-Fold or Stratified K-Fold) is used throughout the training process to ensure the model generalizes well and prevents overfitting.
 
 ### **4. Model Evaluation**
-* The performance of the final selected model is evaluated using appropriate metrics (e.g., **F1-Score, AUC** for classification; **RMSE, MAE** for regression) on a held-out test set.
+* The performance of the final selected model is evaluated using appropriate metrics (e.g., **RMSE, MAE** for regression) on a held-out test set.
 * **Feature Importance:** Model interpretability is explored by analyzing feature importance scores to validate initial hypotheses from the EDA.
 
 ---
